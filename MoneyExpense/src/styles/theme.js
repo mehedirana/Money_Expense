@@ -1,0 +1,45 @@
+import { Dimensions } from 'react-native';
+
+const { width, height } = Dimensions.get('window');
+
+export const COLORS = {
+    // base colors
+    primaryOriginal: '#39FF14',
+    secondaryOriginal: '#00EE4A',
+    primary: '#00D248',
+    black: '#242823',
+    blackSolid: '#000000',
+    blue:'#1877F2',
+    error: '#E5BE00',
+    white: '#EBEBEB',
+    whitePure: '#FFFFFF',
+    gray: '#A7A7A7',
+    lightGray: '#EBEBEB',
+    lightGray10: '#F8F8F8',
+    lightGray50: '#F5F5F5',
+    darkGray: '#BEBEBE',
+    gray2: '#C2C2C2',
+    gray50: '#C6C6C6',
+    gray10: '#B2B2B2',
+    black50: '#444444',
+    black10: '#696969',
+    red: '#EB5147',
+    green: '#1C8C44',
+    white2: '#F8F8F8',
+    placeHolderColor: '#C6C6C6',
+  
+    dark: 'rgba(1, 10, 3, 0.8)',
+    dark20: 'rgba(1, 10, 3, 0.2)',
+    dark80: 'rgba(1, 10, 3, 0.8)',
+    dark60: 'rgba(1, 10, 3, 0.6)',
+    dark40: 'rgba(1, 10, 3, 0.4)',
+    dark6: 'rgba(1, 10, 3, 0.6)',
+    blackRgb: 'rgba(1, 10, 3, 1)',
+    dark2: 'rgba(0, 0, 0, 1)',
+    homeBg: '#E5E5E5',
+    themeBg: '#F3F7F4',
+    themeBg2: '#F4FFF8',
+    primaryBg16: 'rgba(0, 212, 42, 0.16)',
+    primaryBg2: 'rgba(0, 212, 42, 0.2)',
+    darkBlue: '#00007D',
+  };
