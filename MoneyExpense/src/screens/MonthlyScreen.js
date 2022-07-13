@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { HorizontalList } from '../components/filter-list/HorizontalList';
 import { monthsData } from '../components/dummy-data/rawdata';
+import { useSelector } from 'react-redux';
 
 const MonthlyScreen =()=> {
     const [selected, setSelected] = useState(   {
@@ -10,6 +11,15 @@ const MonthlyScreen =()=> {
         name: "January",
         shortName: "Jan"
     })
+
+    const { expense } = useSelector((e) => e.expenseList)
+
+    useEffect(()=>{
+      if(selected && expense) {
+        const temp = expense?.find((e)=>e.time === selected?.shortName)
+        console.log('-------',temp);
+      }
+    },[selected])
     const handleMonthFilter =(txt)=>{
         setSelected(txt)
         console.log('txt--->', txt);
