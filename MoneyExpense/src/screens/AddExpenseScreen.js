@@ -2,6 +2,7 @@ import React,{useState} from 'react'
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native'
 import { COLORS } from '../styles/theme'
 import DateTimePicker, { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
+import { CategoryList } from '../components/category/CategoryList';
 
 const downArrow = require('../assets/arrow_down.png');
 
@@ -11,6 +12,7 @@ const AddExpenseScreen = () => {
     const [visibleMonths, setVisibleMonths] = useState(false)
     const [selectedCat, setSelectedCat] = useState(null)
     const [amount, setAmount] = useState(null);
+    const [selectedMonth, setSelectedMonth] = useState(null)
     const [date, setDate] = useState(new Date());
 
 
@@ -31,9 +33,15 @@ const AddExpenseScreen = () => {
             is24Hour: true
         })
     };
+
+    const childToParent =(data)=> setSelectedCat(data)
     
     return (
         <View style={styles.conatiner}>
+            {isVisible && <CategoryList isVisble={isVisible} setIsVisible={setIsVisible} childToParent={childToParent} />}
+              <TouchableOpacity onPress={() => setIsVisible(true)}>
+                <Text style={styles.catTxt}>{selectedCat ? selectedCat?.categoryName : 'Select a Category'} </Text>
+            </TouchableOpacity>
             <TextInput style={{ borderBottomWidth: 1, marginTop: 10, fontSize: 16, color: COLORS.primary, borderColor: COLORS.gray }}
                 keyboardType='numeric'
                 placeholder='Insert Ammount'
