@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native'
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image,Alert } from 'react-native'
 import { COLORS } from '../styles/theme'
 import DateTimePicker, { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
 import { CategoryList } from '../components/category/CategoryList';
 import { MonthList } from '../components/category/MonthList';
+import uuid from 'react-native-uuid';
 
 const downArrow = require('../assets/arrow_down.png');
 
@@ -19,6 +20,24 @@ const AddExpenseScreen = () => {
 
     const showDatepicker = () => showMode('date');
     const showTimepicker = () => showMode('time');
+
+    const handleSaveExpense =(getTime) =>{
+        if (!selectedCat) Alert.alert('Empty Field Error', 'Category needed')
+        else if (!amount) Alert.alert('Empty Field Error', 'Amount needed')
+        else if (!getTime) Alert.alert('Empty Field Error', 'Time and Date not found')
+        else{
+
+            const data = {}
+            data.expenseId = uuid.v4()
+            data.category = selectedCat;
+            data.expenseAmount = amount;
+            data.time = getTime
+
+            if(data !== {}){
+                console.log({data});
+            }
+        }
+    }
 
 
     const onChange = (event, selectedDate) => {
@@ -63,6 +82,12 @@ const AddExpenseScreen = () => {
             </TouchableOpacity>
 
             <Text style={{ ...styles.catTxt, color: COLORS.black }}>Selected Date: {date.toLocaleString()}</Text>
+
+
+            
+            <TouchableOpacity style={{ backgroundColor: COLORS.primary, borderRadius: 9, marginTop: 50 }} onPress={() => handleSaveExpense(date.toLocaleString())}>
+                <Text style={{ color: COLORS.whitePure, paddingVertical: 10, textAlign: 'center', fontSize: 22 }}>Save Expense</Text>
+            </TouchableOpacity>
 
 
         </View>
