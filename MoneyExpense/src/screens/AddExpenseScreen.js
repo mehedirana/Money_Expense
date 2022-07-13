@@ -1,8 +1,9 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native'
 import { COLORS } from '../styles/theme'
 import DateTimePicker, { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
 import { CategoryList } from '../components/category/CategoryList';
+import { MonthList } from '../components/category/MonthList';
 
 const downArrow = require('../assets/arrow_down.png');
 
@@ -34,12 +35,15 @@ const AddExpenseScreen = () => {
         })
     };
 
-    const childToParent =(data)=> setSelectedCat(data)
-    
+    const childToParent = (data) => setSelectedCat(data)
+
+    const childToParentMonths = (data) => setSelectedMonth(data)
+
     return (
         <View style={styles.conatiner}>
+            {visibleMonths && <MonthList visbleMonths={visibleMonths} setVisibleMonths={setVisibleMonths} childToParentMonths={childToParentMonths} />}
             {isVisible && <CategoryList isVisble={isVisible} setIsVisible={setIsVisible} childToParent={childToParent} />}
-              <TouchableOpacity onPress={() => setIsVisible(true)}>
+            <TouchableOpacity onPress={() => setIsVisible(true)}>
                 <Text style={styles.catTxt}>{selectedCat ? selectedCat?.categoryName : 'Select a Category'} </Text>
             </TouchableOpacity>
             <TextInput style={{ borderBottomWidth: 1, marginTop: 10, fontSize: 16, color: COLORS.primary, borderColor: COLORS.gray }}
@@ -51,14 +55,14 @@ const AddExpenseScreen = () => {
 
             <TouchableOpacity style={styles.timeCard} onPress={showDatepicker}>
                 <Text style={styles.timeTxt}>Select Date</Text>
-                <Image style={{resizeMode:'contain', height:25, width:25, alignSelf:'center'}} source={downArrow} />
+                <Image style={{ resizeMode: 'contain', height: 25, width: 25, alignSelf: 'center' }} source={downArrow} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.timeCard} onPress={showTimepicker}>
                 <Text style={styles.timeTxt}>Select time</Text>
-                <Image style={{resizeMode:'contain', height:25, width:25, alignSelf:'center'}} source={downArrow} />
+                <Image style={{ resizeMode: 'contain', height: 25, width: 25, alignSelf: 'center' }} source={downArrow} />
             </TouchableOpacity>
 
-            <Text style={styles.catTxt}>Selected Date: {date.toLocaleString()}</Text>
+            <Text style={{ ...styles.catTxt, color: COLORS.black }}>Selected Date: {date.toLocaleString()}</Text>
 
 
         </View>
@@ -72,7 +76,7 @@ export default AddExpenseScreen;
 const styles = StyleSheet.create({
     conatiner: {
         flex: 1,
-        marginHorizontal:30
+        marginHorizontal: 30
     },
     catTxt: {
         fontSize: 16,
@@ -82,17 +86,17 @@ const styles = StyleSheet.create({
         marginTop: 20,
         paddingBottom: 5
     },
-    timeTxt:{
+    timeTxt: {
         fontSize: 16,
         borderColor: COLORS.gray,
         color: COLORS.primary,
         paddingBottom: 5
 
     },
-    timeCard:{
-        flexDirection:'row',
-        justifyContent:'space-between',
-        padding:5
+    timeCard: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        padding: 5
     }
 
 })
