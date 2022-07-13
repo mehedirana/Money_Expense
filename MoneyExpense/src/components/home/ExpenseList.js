@@ -6,23 +6,24 @@ import { COLORS } from '../../styles/theme'
 
 export const ExpenseList = ({ data }) => {
     const dispatch = useDispatch()
-
-    console.log({ data });
-
     const handleDelete = (item) => dispatch(removeFromExpense(item))
 
     const RenderList = ({ item, index }) => {
         return (
             <View style={styles.card}>
+                <View style={{flexDirection:'row', justifyContent:'space-between'}}>
                 <Text style={styles.catTxt} >{item?.category?.categoryName}</Text>
+                <Text style={styles.catTxt} >{item?.time}</Text>
+                </View>
+                
                 <Text>{item?.expenseAmount}</Text>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
                     <TouchableOpacity onPress={() => handleDelete(item)}>
                         <Text style={{ color: COLORS.red }}>Delete</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    {/* <TouchableOpacity>
                         <Text style={{ color: COLORS.primary }}>Edit</Text>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
 
                 </View>
             </View>
@@ -59,7 +60,8 @@ const styles = StyleSheet.create({
         shadowRadius: 10.32,
         elevation: 2,
         padding: 10,
-        borderRadius:9
+        borderRadius:9,
+        marginBottom:5
     },
     catTxt: {
         fontSize: 18,

@@ -14,7 +14,7 @@ export const HorizontalList = ({ data, childToParent, selected }) => {
         )
     }
     return (
-        <SafeAreaView style={{ flex: 1, marginTop:10 }}>
+        <SafeAreaView>
             {
                 data && <FlatList
                     horizontal
@@ -22,7 +22,6 @@ export const HorizontalList = ({ data, childToParent, selected }) => {
                     data={data}
                     key={(item) => item.id}
                     renderItem={RenderList}
-                    // ItemSeparatorComponent={()=> <View style={{width:20}}/>}
                 />
             }
         </SafeAreaView>
