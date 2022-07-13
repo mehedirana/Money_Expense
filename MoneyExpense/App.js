@@ -14,6 +14,7 @@ import {
   Text,
 } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
+import DrawerNavigation from './src/navigation/drawer-navigation/DrawerNavigation';
 
 
 
@@ -26,10 +27,9 @@ const App = () => {
   },[])
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{flex:1}}>
       <StatusBar barStyle={'dark-content'} />
-      <Text>hello ----</Text>
-
+      <DrawerNavigation/>
     </SafeAreaView>
   );
 };
